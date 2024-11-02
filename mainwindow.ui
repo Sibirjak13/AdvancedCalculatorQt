@@ -173,7 +173,7 @@
      <string>/</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonMultipication">
+   <widget class="QPushButton" name="buttonMultiplication">
     <property name="geometry">
      <rect>
       <x>290</x>

@@ -32,6 +32,8 @@ private:
     bool divisionClicked = false;
 
     bool checkIfNumberIsZero();
+    void numberButtonClick(QString number);
+    void setBinaryOperationsButtonsCheckable(bool checkable);
     void printDebugInfo(bool end, QString methodName);
 
 private slots:
@@ -39,6 +41,8 @@ private slots:
 
     void on_buttonAddition_clicked();
     void on_buttonSubtraction_clicked();
+    void on_buttonMultiplication_clicked();
+    void on_buttonDivision_clicked();
 
     void on_buttonResault_clicked();
 
