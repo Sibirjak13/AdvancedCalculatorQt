@@ -9,6 +9,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     setFixedSize(this->size());
 
+
+    QFile file("../styles.qss");
+    if (file.open(QFile::ReadOnly | QFile::Text)) {
+        QString styleSheet = file.readAll();
+        qApp->setStyleSheet(styleSheet);
+        file.close();
+    } else {
+        qDebug() << "Could not open styles.qss";
+    }
+
     ui->labelReslutDisplay->setAlignment(Qt::AlignRight);
 }
 

@@ -1,0 +1,113 @@
+
+QPushButton {
+    border: 2px solid #4b5659;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 15px;
+}
+
+#buttonOne, #buttonTwo, #buttonThree, #buttonFour, #buttonFive,
+#buttonSix, #buttonSeven, #buttonEight, #buttonNine, #buttonZero,
+#buttonLeftBracket, #buttonRightBracket, #buttonPoint,
+#buttonAddition, #buttonDivision, #buttonMultiplication, 
+#buttonSubtraction, #buttonSquare, #buttonSquareRoot {
+    background-color: qlineargradient(
+        x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #c3dee6,     
+        stop: 0.5 #a6babf,   
+        stop: 1 #6e7b80    
+    );
+}
+
+#buttonOne:hover, #buttonTwo:hover, #buttonThree:hover, #buttonFour:hover, #buttonFive:hover,
+#buttonSix:hover, #buttonSeven:hover, #buttonEight:hover, #buttonNine:hover, #buttonZero:hover,
+#buttonLeftBracket:hover, #buttonRightBracket:hover, #buttonPoint:hover,
+#buttonAddition:hover, #buttonDivision:hover, #buttonMultiplication:hover, 
+#buttonSubtraction:hover, #buttonSquare:hover, #buttonSquareRoot:hover  {
+    background-color: qlineargradient(
+        x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #afc3c9,     
+        stop: 0.5 #869da3,   
+        stop: 1 #5b676b     
+    );
+}
+
+#buttonOne:pressed, #buttonTwo:pressed, #buttonThree:pressed, #buttonFour:pressed, #buttonFive:pressed,
+#buttonSix:pressed, #buttonSeven:pressed, #buttonEight:pressed, #buttonNine:pressed, #buttonZero:pressed,
+#buttonLeftBracket:pressed, #buttonRightBracket:pressed, #buttonPoint:pressed,
+#buttonAddition:pressed, #buttonDivision:pressed, #buttonMultiplication:pressed, 
+#buttonSubtraction:pressed, #buttonSquare:pressed, #buttonSquareRoot:pressed {
+    background-color: qlineargradient(
+        x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #c3dee6,     
+        stop: 0.5 #a6babf,   
+        stop: 1 #6e7b80    
+    );
+}
+
+#buttonDelete {
+    background-color: qlineargradient(
+        x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #ff6b5e,     
+        stop: 0.5 #cf2f21,   
+        stop: 1 #a1261b    
+    );
+}
+
+#buttonDelete:hover {
+    background-color: qlineargradient(
+        x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #d13221,     
+        stop: 0.5 #9c2519,   
+        stop: 1 #6b1a12    
+    );
+}
+
+#buttonDelete:pressed {
+    background-color: qlineargradient(
+        x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #ff6b5e,     
+        stop: 0.5 #cf2f21,   
+        stop: 1 #a1261b    
+    );
+}
+
+#buttonResault {
+    background-color: qlineargradient(
+        x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #5e74ff,     
+        stop: 0.5 #374cd4,   
+        stop: 1 #27348a    
+    );
+}
+
+#buttonResault:hover {
+    background-color: qlineargradient(
+        x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #4253b8,     
+        stop: 0.5 #263487,   
+        stop: 1 #151d4d    
+    );
+
+}
+
+#buttonResault:pressed {
+    background-color: qlineargradient(
+        x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #5e74ff,     
+        stop: 0.5 #374cd4,   
+        stop: 1 #27348a    
+    );
+}
+
+#labelReslutDisplay {
+    background-color: #FFFFFF;
+    padding-top: 10px;    
+    padding-bottom: 10px; 
+    border: 2px solid #4b5659;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
