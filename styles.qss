@@ -10,7 +10,7 @@ QPushButton {
 
 #buttonOne, #buttonTwo, #buttonThree, #buttonFour, #buttonFive,
 #buttonSix, #buttonSeven, #buttonEight, #buttonNine, #buttonZero,
-#buttonLeftBracket, #buttonRightBracket, #buttonPoint,
+#buttonOpeningBracket, #buttonClosingBracket, #buttonPoint,
 #buttonAddition, #buttonDivision, #buttonMultiplication, 
 #buttonSubtraction, #buttonSquare, #buttonSquareRoot {
     background-color: qlineargradient(
@@ -23,7 +23,7 @@ QPushButton {
 
 #buttonOne:hover, #buttonTwo:hover, #buttonThree:hover, #buttonFour:hover, #buttonFive:hover,
 #buttonSix:hover, #buttonSeven:hover, #buttonEight:hover, #buttonNine:hover, #buttonZero:hover,
-#buttonLeftBracket:hover, #buttonRightBracket:hover, #buttonPoint:hover,
+#buttonOpeningBracket:hover, #buttonClosingBracket:hover, #buttonPoint:hover,
 #buttonAddition:hover, #buttonDivision:hover, #buttonMultiplication:hover, 
 #buttonSubtraction:hover, #buttonSquare:hover, #buttonSquareRoot:hover  {
     background-color: qlineargradient(
@@ -36,7 +36,7 @@ QPushButton {
 
 #buttonOne:pressed, #buttonTwo:pressed, #buttonThree:pressed, #buttonFour:pressed, #buttonFive:pressed,
 #buttonSix:pressed, #buttonSeven:pressed, #buttonEight:pressed, #buttonNine:pressed, #buttonZero:pressed,
-#buttonLeftBracket:pressed, #buttonRightBracket:pressed, #buttonPoint:pressed,
+#buttonOpeningBracket:pressed, #buttonClosingBracket:pressed, #buttonPoint:pressed,
 #buttonAddition:pressed, #buttonDivision:pressed, #buttonMultiplication:pressed, 
 #buttonSubtraction:pressed, #buttonSquare:pressed, #buttonSquareRoot:pressed {
     background-color: qlineargradient(

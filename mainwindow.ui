@@ -202,7 +202,7 @@
      <string>0</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonLeftBracket">
+   <widget class="QPushButton" name="buttonOpeningBracket">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -215,7 +215,7 @@
      <string>(</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonRightBracket">
+   <widget class="QPushButton" name="buttonClosingBracket">
     <property name="geometry">
      <rect>
       <x>140</x>

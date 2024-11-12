@@ -3,7 +3,8 @@
 
 #include <QMainWindow>
 #include <QFile>
-
+#include <QRegularExpression>
+#include <QList>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,17 +26,18 @@ private:
     int firstNumber;
     int secondNumber;
 
-    bool firstNumberSet = false;
-    bool secondNumberSet = false;
+    int openBracketsCounter = 0;
 
-    bool additionClicked = false;
-    bool subtractionClicked = false;
-    bool multiplicationClicked = false;
-    bool divisionClicked = false;
+    bool lastAddedIsNumber = false;
+    bool lastAddedIsOpeningBracket = false;
+    bool lastAddedIsClosingBracket = false;
+    bool lastAddedIsBinaryOperator = false;
+    bool lastAddedIsUnaryOperator = false;
 
     bool checkIfNumberIsZero();
+    int calculateExpression(QString expression);
     void numberButtonClick(QString number);
-    void setBinaryOperationsButtonsCheckable(bool checkable);
+    void setOperationsButtonsCheckable(bool checkable);
     void printDebugInfo(bool end, QString methodName);
 
 private slots:
@@ -45,6 +47,9 @@ private slots:
     void on_buttonSubtraction_clicked();
     void on_buttonMultiplication_clicked();
     void on_buttonDivision_clicked();
+
+    void on_buttonOpeningBracket_clicked();
+    void on_buttonClosingBracket_clicked();
 
     void on_buttonResault_clicked();
 
