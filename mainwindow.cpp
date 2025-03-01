@@ -34,7 +34,7 @@ bool MainWindow::checkIfNumberIsZero(){
 }
 
 int MainWindow::calculateExpression(QString expression){
-    QStringList numbersStrings = expression.split(QRegularExpression(" \\+ | \\- | x | / "), Qt::SkipEmptyParts);
+    QStringList numbersStrings = expression.split(QRegularExpression(" \\+ | \\- | x | / |\\^|√"), Qt::SkipEmptyParts);
 
     QList<int> numbers;
 
@@ -48,7 +48,7 @@ int MainWindow::calculateExpression(QString expression){
 
     QStringList operators;
     for(int j = 0; j < expression.length(); j++){
-        if(expression[j] == '+' || expression[j] == '-' || expression[j] == 'x' || expression[j] == '/'){
+        if(expression[j] == '+' || expression[j] == '-' || expression[j] == 'x' || expression[j] == '/' || expression[j] == "^" || expression[j] == "√"){
             if(expression[j] == '-' && (expression[j+1] > '0' && expression[j+1] < '9')){
                 continue;
             }
@@ -72,7 +72,13 @@ int MainWindow::calculateExpression(QString expression){
     for(int j = 0; j < operators.length(); j++){
         qDebug() << "j = " << j << ", operation: " << operators[j];
 
-        if(operators[j] == "/"){
+        if(operators[j] == "^"){
+            result = qPow(result, numbers[j + 1]);
+            qDebug() << "Result: " << result;
+        } else if(operators[j] == "√"){
+            result = qSqrt(numbers[j]);
+            qDebug() << "Result: " << result;
+        } else if(operators[j] == "/"){
             result = result / numbers[j + 1];
             qDebug() << "Result: " << result;
         } else if(operators[j] == "x"){
@@ -83,7 +89,6 @@ int MainWindow::calculateExpression(QString expression){
             qDebug() << "Result added to list: " << result;
             result = numbers[j + 1];
             qDebug() << "Current result: " << result;
-
         }
 
         if(j == operators.length() - 1){
@@ -100,6 +105,7 @@ int MainWindow::calculateExpression(QString expression){
 
     operators.removeAll("/");
     operators.removeAll("x");
+    operators.removeAll("^");
 
     result = numbersCalculated[0];
 
@@ -192,19 +198,23 @@ void MainWindow::on_buttonDelete_clicked(){
                 lastAddedIsNumber = true;
             }
         } else if(lastAddedIsUnaryOperator || lastAddedIsNumber){
-            expression.chop(1);
+            if(expression.length() == 1){
+                expression = "";
+            } else {
+                expression.chop(1);
 
-            if(lastAddedIsUnaryOperator)
-                lastAddedIsUnaryOperator = false;
-            if(lastAddedIsNumber)
-                lastAddedIsNumber = false;
+                if(lastAddedIsUnaryOperator)
+                    lastAddedIsUnaryOperator = false;
+                if(lastAddedIsNumber)
+                    lastAddedIsNumber = false;
 
-            if(expression.back() == ' '){
-                lastAddedIsBinaryOperator = true;
-            } else if(expression.back() == '('){
-                lastAddedIsOpeningBracket = true;
-            } else if(expression.back() >= '0' && expression.back() <= '9'){
-                lastAddedIsNumber = true;
+                if(expression.back() == ' '){
+                    lastAddedIsBinaryOperator = true;
+                } else if(expression.back() == '('){
+                    lastAddedIsOpeningBracket = true;
+                } else if(expression.back() >= '0' && expression.back() <= '9'){
+                    lastAddedIsNumber = true;
+                }
             }
         } else if(lastAddedIsClosingBracket) {
             expression.chop(1);
@@ -371,6 +381,36 @@ void MainWindow::on_buttonDivision_clicked(){
     }
 }
 
+void MainWindow::on_buttonSquare_clicked(){
+    QString expression = ui->labelReslutDisplay->text();
+
+    if(lastAddedIsNumber || lastAddedIsClosingBracket){
+        lastAddedIsBinaryOperator = true;
+
+        if(lastAddedIsNumber)
+            lastAddedIsNumber = false;
+        if(lastAddedIsClosingBracket)
+            lastAddedIsClosingBracket = false;
+
+        ui->labelReslutDisplay->setText(expression.append("^"));
+    }
+}
+
+void MainWindow::on_buttonSquareRoot_clicked(){
+    QString expression = ui->labelReslutDisplay->text();
+
+    if(lastAddedIsBinaryOperator || expression.isEmpty() || lastAddedIsOpeningBracket){
+        lastAddedIsUnaryOperator = true;
+
+        if(lastAddedIsBinaryOperator)
+            lastAddedIsBinaryOperator = false;
+        if(lastAddedIsOpeningBracket)
+            lastAddedIsOpeningBracket = false;
+
+        ui->labelReslutDisplay->setText(expression.append("√"));
+    }
+}
+
 void MainWindow::on_buttonOne_clicked(){
     numberButtonClick("1");
 }
@@ -410,4 +450,3 @@ void MainWindow::on_buttonNine_clicked(){
 void MainWindow::on_buttonZero_clicked(){
     numberButtonClick("0");
 }
-

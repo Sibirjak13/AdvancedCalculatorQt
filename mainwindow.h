@@ -48,6 +48,9 @@ private slots:
     void on_buttonMultiplication_clicked();
     void on_buttonDivision_clicked();
 
+    void on_buttonSquare_clicked();
+    void on_buttonSquareRoot_clicked();
+
     void on_buttonOpeningBracket_clicked();
     void on_buttonClosingBracket_clicked();
 
