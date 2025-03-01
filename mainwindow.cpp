@@ -242,23 +242,23 @@ void MainWindow::on_buttonResault_clicked(){
 
         while(expression.contains(QRegularExpression("[\\(\\)]"))){
             for(int i = 0; i < expression.length(); i++){
-                if(expression[i] == '(' && expression[i+1] != '('){
+                if(expression[i] == '('){
                     lastOpenBracketIndex = i;
-                    openCounter++;
+                    if(openCounter == 0)
+                        openCounter++;
                 }
                 if(expression[i] == ')'){
                     closedCounter++;
                     if(closedCounter == openCounter){
                         int closingBracketIndex =  i;
                         QString substring = expression.mid(lastOpenBracketIndex + 1, closingBracketIndex - lastOpenBracketIndex - openCounter);
+                        qDebug() << "Substring" << substring;
 
                         expression.replace(lastOpenBracketIndex, closingBracketIndex - lastOpenBracketIndex + 1, QString::number(calculateExpression(substring)));
-
                         qDebug() << "Labela:" << expression;
 
                         closedCounter = 0;
                         openCounter = 0;
-
 
                         break;
                     }
