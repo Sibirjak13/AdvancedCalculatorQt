@@ -33,7 +33,7 @@ bool MainWindow::checkIfNumberIsZero(){
     return ui->labelReslutDisplay->text() == "0";
 }
 
-int MainWindow::calculateExpression(QString expression){
+double MainWindow::calculateExpression(QString expression){
     QStringList numbersStrings = expression.split(QRegularExpression(" \\+ | \\- | x | / |\\^|√"), Qt::SkipEmptyParts);
 
     QList<int> numbers;
@@ -67,18 +67,40 @@ int MainWindow::calculateExpression(QString expression){
 
 
     QList<int> numbersCalculated;
+    QList<int> removeIndexes;
+
+    for(int j = 0; j < operators.length(); j++){
+        qDebug() << "j: " << j;
+        if(operators[j] == "√"){
+            if(numbers[j] < 0){
+                return std::nan("");
+            }
+            numbers[j] = qSqrt(numbers[j]);
+            qDebug() << "Result: " << numbers[j];
+        }
+    }
+
+    operators.removeAll("√");
+
+    for(int j = 0; j < operators.length(); j++){
+        if(operators[j] == "^"){
+            numbers[j] = qPow(numbers[j], numbers[j + 1]);
+            removeIndexes.append(j+1);
+            qDebug() << "Result: " << numbers[j];
+        }
+    }
+
+    for(int j = 0; j < removeIndexes.length(); j++){
+        numbers.removeAt(removeIndexes[removeIndexes.length() - 1 - j]);
+    }
+
+    operators.removeAll("^");
 
     int result = numbers[0];
     for(int j = 0; j < operators.length(); j++){
         qDebug() << "j = " << j << ", operation: " << operators[j];
 
-        if(operators[j] == "^"){
-            result = qPow(result, numbers[j + 1]);
-            qDebug() << "Result: " << result;
-        } else if(operators[j] == "√"){
-            result = qSqrt(numbers[j]);
-            qDebug() << "Result: " << result;
-        } else if(operators[j] == "/"){
+        if(operators[j] == "/"){
             result = result / numbers[j + 1];
             qDebug() << "Result: " << result;
         } else if(operators[j] == "x"){
@@ -105,7 +127,6 @@ int MainWindow::calculateExpression(QString expression){
 
     operators.removeAll("/");
     operators.removeAll("x");
-    operators.removeAll("^");
 
     result = numbersCalculated[0];
 
@@ -187,6 +208,11 @@ void MainWindow::on_buttonDelete_clicked(){
     QString expression = ui->labelReslutDisplay->text();
 
     if(!expression.isEmpty()){
+        if(expression == "nan"){
+            ui->labelReslutDisplay->setText("");
+            return;
+        }
+
         if(lastAddedIsBinaryOperator){
             expression.chop(3);
 
@@ -264,7 +290,13 @@ void MainWindow::on_buttonResault_clicked(){
                         QString substring = expression.mid(lastOpenBracketIndex + 1, closingBracketIndex - lastOpenBracketIndex - openCounter);
                         qDebug() << "Substring" << substring;
 
-                        expression.replace(lastOpenBracketIndex, closingBracketIndex - lastOpenBracketIndex + 1, QString::number(calculateExpression(substring)));
+                        double result = calculateExpression(substring);
+                        /*if(std::isnan(result)){
+                            ui->labelReslutDisplay->setText("");
+                            return;
+                        }*/
+
+                        expression.replace(lastOpenBracketIndex, closingBracketIndex - lastOpenBracketIndex + 1, QString::number(result));
                         qDebug() << "Labela:" << expression;
 
                         closedCounter = 0;

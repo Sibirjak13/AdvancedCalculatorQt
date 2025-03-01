@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QRegularExpression>
 #include <QList>
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -35,7 +36,7 @@ private:
     bool lastAddedIsUnaryOperator = false;
 
     bool checkIfNumberIsZero();
-    int calculateExpression(QString expression);
+    double calculateExpression(QString expression);
     void numberButtonClick(QString number);
     void setOperationsButtonsCheckable(bool checkable);
     void printDebugInfo(bool end, QString methodName);
